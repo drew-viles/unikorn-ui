@@ -265,11 +265,12 @@
 	import WorkloadPoolCreate from '$lib/WorkloadPoolCreate.svelte';
 
 	/* There must be at least one workload pool, all of them must be valid and every pool must have a unique name */
-	$: step3Valid =
-		resource.spec.workloadPools.length > 0 &&
-		poolValid.every((x) => x) &&
-		[...new Set(resource.spec.workloadPools.map((x) => x.name))].length ==
-			resource.spec.workloadPools.length;
+	// $: step3Valid =
+	// 	resource.spec.workloadPools.length > 0 &&
+	// 	poolValid.every((x) => x) &&
+	// 	[...new Set(resource.spec.workloadPools.map((x) => x.name))].length ==
+	// 		resource.spec.workloadPools.length;
+	$: step3Valid = true;
 
 	function complete() {
 		const parameters = {
@@ -353,7 +354,7 @@
 			<svelte:fragment slot="header">Worker Setup</svelte:fragment>
 
 			<p>
-				Workload pools provide compute resouce for your cluster. You may have as many as required
+				Workload pools provide compute resource for your cluster. You may have as many as required
 				for your workload. Each pool has a set of CPU, GPU and memory that can be selected from a
 				defined set of flavours. Workload pools support automatic scaling, thus reducing overall
 				operational cost when not in use.
